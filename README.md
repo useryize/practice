@@ -1,2 +1,2 @@
-#javascript设计模式
+# javascript设计模式
 ---
