@@ -1,1 +1,1 @@
-console.log('hello');
+console.log('javascript设计模式环境搭建')
