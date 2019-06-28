@@ -8,112 +8,158 @@
 - [css] [圣杯布局和双飞翼布局的理解和区别，并用代码实现]
     - 作用：圣杯布局和双飞翼布局解决的问题是一样的，就是两边顶宽，中间自适应的三栏布局，中间栏要在放在文档流前面以优先渲染。
     - 区别：圣杯布局，为了中间div内容不被遮挡，将中间div设置了左右padding-left和padding-right后，将左右两个div用相对布局position: relative并分别配合right和left属性，以便左右两栏div移动后不遮挡中间div。双飞翼布局，为了中间div内容不被遮挡，直接在中间div内部创建子div用于放置内容，在该子div里用margin-left和margin-right为左右两栏div留出位置。
-> 圣杯布局代码：
+### 圣杯布局
+> 此布局一般的需求为两边等宽，中间自适应的三栏布局。
 ```
-<body>
-<div id="hd">header</div>
-<div id="bd">
-  <div id="middle">middle</div>
-  <div id="left">left</div>
-  <div id="right">right</div>
-</div>
-<div id="footer">footer</div>
-</body>
-
 <style>
-#hd{
-    height:50px;
-    background: #666;
+  main {
+    width: 100%;
+    padding: 39px 29px;
+    font-size: 12px;
+  }
+  section {
+    padding: 0 129px;
+    box-shadow: 0 0 0 1px #eee;
+  }
+  section::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  section > div {
+    height: 229px;
+    line-height: 1.5em;
+    padding: 29px 12px;
     text-align: center;
-}
-#bd{
-    /*左右栏通过添加负的margin放到正确的位置了，此段代码是为了摆正中间栏的位置*/
-    padding:0 200px 0 180px;
-    height:100px;
-}
-#middle{
-    float:left;
-    width:100%;/*左栏上去到第一行*/
-    height:100px;
-    background:blue;
-}
-#left{
-    float:left;
-    width:180px;
-    height:100px;
-    margin-left:-100%;
-    background:#0c9;
-    /*中间栏的位置摆正之后，左栏的位置也相应右移，通过相对定位的left恢复到正确位置*/
-    position:relative;
-    left:-180px;
-}
-#right{
-    float:left;
-    width:200px;
-    height:100px;
-    margin-left:-200px;
-    background:#0c9;
-    /*中间栏的位置摆正之后，右栏的位置也相应左移，通过相对定位的right恢复到正确位置*/
-    position:relative;
-    right:-200px;
-}
-#footer{
-    height:50px;
-    background: #666;
-    text-align: center;
-}
+    float: left;
+    color: white;
+    background: #b4a078;
+  }
+  section .left, section .right {
+    position: relative;
+    width: 119px;
+  }
+  section .left {
+    left: -129px;
+    margin-left: -100%;
+  }
+  section .center {
+    width: 100%;
+    text-align: justify;
+    hyphens: auto;
+  }
+  section .right {
+    left: 129px;
+    margin-left: -119px;
+  }
+  /* input range */
+  input[type="range"] {
+    width: 100%;
+    cursor: ew-resize;
+  }
 </style>
+<template>
+  <main class="main">
+    <input ref="range" type="range" value="100">
+    <section :style="{ width }">
+      <div class="center">A paragraph of filler text. La la la de dah de dah de dah de la.</div>
+      <div class="left">left</div>
+      <div class="right">right</div>
+    </section>
+  </main>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        width: "100%"
+      }
+    },
+    mounted() {
+      this.$refs.range.oninput = ({ target: { value } }) => {
+        this.width = `${60 + value * .4}%`;
+      }
+    }
+  }
+</script>
 ```
->双飞翼布局代码：
+### 双飞翼布局
+> 此布局的需求同圣杯布局一样，都为两边等宽，中间自适应的三栏布局，源自淘宝UED
 ```
-<body>
-<div id="hd">header</div> 
-  <div id="middle">
-    <div id="inside">middle</div>
-  </div>
-  <div id="left">left</div>
-  <div id="right">right</div>
-  <div id="footer">footer</div>
-</body>
-
 <style>
-#hd{
-    height:50px;
-    background: #666;
+  main {
+    width: 100%;
+    padding: 39px 29px;
+    font-size: 12px;
+  }
+  section {
+    box-shadow: 0 0 0 1px #eee;
+  }
+  section::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  section > div {
+    height: 229px;
+    line-height: 1.5em;
     text-align: center;
-}
-#middle{
-    float:left;
-    width:100%;/*左栏上去到第一行*/     
-    height:100px;
-    background:blue;
-}
-#left{
-    float:left;
-    width:180px;
-    height:100px;
-    margin-left:-100%;
-    background:#0c9;
-}
-#right{
-    float:left;
-    width:200px;
-    height:100px;
-    margin-left:-200px;
-    background:#0c9;
-}
-
-/*给内部div添加margin，把内容放到中间栏，其实整个背景还是100%*/ 
-#inside{
-    margin:0 200px 0 180px;
-    height:100px;
-}
-#footer{  
-   clear:both; /*记得清楚浮动*/  
-   height:50px;     
-   background: #666;    
-   text-align: center; 
-} 
+    float: left;
+    color: white;
+  }
+  section .left, section .right {
+    width: 119px;
+    padding-top: 29px;
+    background: #b4a078;
+  }
+  section .left {
+    margin-left: -100%;
+  }
+  section .center {
+    width: 100%;
+    text-align: justify;
+    hyphens: auto;
+  }
+  section .center-inner {
+    height: 100%;
+    margin: 0 129px;
+    padding: 29px 12px;
+    background: #b4a078;
+  }
+  section .right {
+    margin-left: -119px;
+  }
+  /* input range */
+  input[type="range"] {
+    width: 100%;
+    cursor: ew-resize;
+  }
 </style>
+<template>
+  <main class="main">
+    <input ref="range" type="range" value="100">
+    <section :style="{ width }">
+      <div class="center">
+        <div class="center-inner">A paragraph of filler text. La la la de dah de dah de dah de la.</div>
+      </div>
+      <div class="left">left</div>
+      <div class="right">right</div>
+    </section>
+  </main>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        width: "100%"
+      }
+    },
+    mounted() {
+      this.$refs.range.oninput = ({ target: { value } }) => {
+        this.width = `${60 + value * .4}%`;
+      }
+    }
+  }
+</script>
 ```
 - [js] [用递归算法实现，数组长度为5且元素的随机数在2-32间不重复的值]
