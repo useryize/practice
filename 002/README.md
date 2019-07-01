@@ -4,6 +4,9 @@
 ### 1
 ### 实现一个数组去重的方法
 
+
+#### 利用ES6 Set去重（ES6中最常用)
+
 ```
 /**
  * @param {利用ES6 Set去重（ES6中最常用)}
@@ -17,7 +20,10 @@ function setArr (arr) {
     // return Array.from(new Set(arr));
 }
 // console.log(setArr(arr));
+```
 
+#### 利用for嵌套for，然后splice去重（ES5中最常用)
+```
 /**
  * 
  * @param {利用for嵌套for，然后splice去重（ES5中最常用)}
@@ -35,7 +41,11 @@ function forArr (arr) {
     return arr;
 }
 // console.log(forArr(arr), arr);
+```
 
+#### 利用indexOf去重
+
+```
 /**
  * @param {利用indexOf去重}
  * Array.isArray 用于确定传递的值是否是一个 Array。如果对象是 Array 则返回true，否则为false。
@@ -56,7 +66,10 @@ function forArr (arr) {
      return newArr;
  }
 //  console.log(indexOfArr(arr));
+```
+#### 利用sort()
 
+```
 /**
  * 
  * @param {利用sort()}  先排序 在去重
@@ -76,7 +89,10 @@ function sortArr (arr) {
     return newArr;
 }
 // console.log(sortArr(arr));
+```
+#### 利用对象的属性不能相同的特点进行去重
 
+```
 /**
  * 
  * @param {利用对象的属性不能相同的特点进行去重}
@@ -97,6 +113,11 @@ function objArr (arr) {
 }
 // console.log(objArr(arr));
 
+```
+
+### 利用includes
+
+```
 /**
  * 
  * @param {利用includes}
@@ -115,6 +136,5 @@ function includesArr (arr) {
     return newArr;
 }
 console.log(includesArr(arr));
-
 
 ```
