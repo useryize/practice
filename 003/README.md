@@ -42,4 +42,4 @@ console.log(person2.name); // Person_prototype_name
 
 让我们用一张图表示构造函数和实例原型之间的关系：
 
-[构造函数和实例原型的关系图](https://github.com/useryize/practice/blob/master/003/images/prototype1.png)
+![构造函数和实例原型的关系图](https://github.com/useryize/practice/blob/master/003/images/prototype1.png)
