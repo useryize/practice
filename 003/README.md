@@ -1,6 +1,6 @@
 # JavaScript 深入之从原型到原型链
 
-> avaScript深入系列的第一篇，从原型与原型链开始讲起，如果你想知道构造函数的实例的原型，原型的原型，原型的原型的原型是什么，就来看看这篇文章吧。
+> JavaScript深入系列的第一篇，从原型与原型链开始讲起，如果你想知道构造函数的实例的原型，原型的原型，原型的原型的原型是什么，就来看看这篇文章吧。
 
 ## 构造函数创建对象
 
@@ -43,3 +43,9 @@ console.log(person2.name); // Person_prototype_name
 让我们用一张图表示构造函数和实例原型之间的关系：
 
 ![构造函数和实例原型的关系图](https://github.com/useryize/practice/blob/master/003/images/prototype1.png)
+
+在这张图中我们用 Object.prototype 表示实例原型。
+
+那么我们该怎么表示实例与实例原型，也就是 person 和 Person.prototype 之间的关系呢，这时候我们就要讲到第二个属性：
+
+## \_\_proto_\_\_
