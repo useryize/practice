@@ -48,4 +48,42 @@ console.log(person2.name); // Person_prototype_name
 
 那么我们该怎么表示实例与实例原型，也就是 person 和 Person.prototype 之间的关系呢，这时候我们就要讲到第二个属性：
 
-## \_\_proto_\_\_
+## \_\_proto\_\_
+
+这是每一个JavaScript对象(除了 null )都具有的一个属性，叫\_\_proto\_\_，这个属性会指向该对象的原型。
+
+为了证明这一点,我们可以在火狐或者谷歌中输入：
+
+```js
+functon Person() {
+
+}
+
+var person = new Person();
+console.log(person.__proto__ === Person.prototype) // true
+
+```
+
+于是我们更新下关系图：
+
+![实例与实例原型的关系图](https://github.com/useryize/practice/blob/master/003/images/prototype2.png)
+
+既然实例对象和构造函数都可以指向原型，那么原型是否有属性指向构造函数或者实例呢？
+
+## constructor
+
+指向实例倒是没有，因为一个构造函数可以生成多个实例，但是原型指向构造函数倒是有的，这就要讲到第三个属性：constructor，每个原型都有一个 constructor 属性指向关联的构造函数。
+
+为了验证这一点，我们可以尝试：
+
+```js
+function Person() {
+
+}
+
+console.log(Person === Person.prototype.constructor); // true
+
+
+```
+
+![实例原型与构造函数的关系图](https://github.com/useryize/practice/blob/master/003/images/prototype3.png)
