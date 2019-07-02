@@ -87,3 +87,23 @@ console.log(Person === Person.prototype.constructor); // true
 ```
 
 ![实例原型与构造函数的关系图](https://github.com/useryize/practice/blob/master/003/images/prototype3.png)
+
+综上我们已经得出：
+
+```js
+function Person() {
+
+}
+var person = new Person();
+
+console.log(Person === Person.prototype.constructoe); // true
+console.log(Person.prototype === person.__proto__); // true
+console.log(Object.getPrototypeOf(person) === Person.prototype); // true
+
+```
+
+了解了构造函数、实例原型、和实例之间的关系，接下来我们讲讲实例和原型的关系：
+
+## 实例与原型
+
+当读取实例的属性时，如果找不到，就会查找与对象关联的原型中的属性，如果还查不到，就去找原型的原型，一直找到最顶层为止。
