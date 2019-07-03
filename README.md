@@ -5,6 +5,11 @@
 
 - [js] [JavaScript深入之执行上下文栈](https://github.com/useryize/practice/tree/master/005)
 
+### 003
+
+- [js] [JavaScript深入之从原型到原型链](https://github.com/useryize/practice/tree/master/003)
+
+
 ### 002
 
 - [js] [12种方法实现一个数组去重](https://github.com/useryize/practice/tree/master/002#1)
