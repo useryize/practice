@@ -9,7 +9,7 @@ let newList = [];
 list.map(item => {
   let type = {};
   newList.map((subItem, subIndex) => {
-    type.obj = subIndex.find(minItem => minItem.name === item.name);
+    type.obj = subItem.find(minItem => minItem.name === item.name);
     type.index = subIndex;
   });
   if (type.obj && type.obj.name === item.name) {
