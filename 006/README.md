@@ -8,14 +8,14 @@ let list = [{name: 1, text: 2},{name: 1, text: 2},{name: 2, text: 2}];
 let newList = [];
 list.map(item => {
   let type = {};
-  newLisy.map((subItem, subIndex) => {
-    type.name = subIndex.find(minItem => minItem.name === item.name);
+  newList.map((subItem, subIndex) => {
+    type.obj = subIndex.find(minItem => minItem.name === item.name);
     type.index = subIndex;
   });
-  if (type.name === item.name) {
+  if (type.obj && type.obj.name === item.name) {
     newList[type.index].push(item);
   } else {
-    newList.push(item)
+    newList.push([item])
   }
 });
 
