@@ -1,6 +1,10 @@
 # 个人练习
 
 
+###### 20200522
+> [js] [你应该知道的13个数组技巧 【略骚】](https://github.com/useryize/practice/blob/master/006/README001.md)
+
+
 ###### 005
 
 > [js] [JavaScript深入之执行上下文栈](https://github.com/useryize/practice/tree/master/005)
