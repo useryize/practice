@@ -1,6 +1,10 @@
 ##### 学如逆水行舟
 
 
+###### 20200525
+> [js] [ES2020 已定稿 可选链式操作符(?.)等](https://github.com/useryize/practice/blob/master/006/README001.md) 
+
+
 ###### 20200522
 > [js] [你应该知道的13个数组技巧 【略骚】](https://github.com/useryize/practice/blob/master/006/README001.md)
 
