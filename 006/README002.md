@@ -246,7 +246,9 @@ beforeGlobalThis.tuture = '小若燕雀，亦可一展宏图';
 我们可以直接使用 globalThis 去引用全局对象，而不用去担心环境的问题：
 
 
-`globalThis.tuture = '小若燕雀，亦可一展宏图';`
+```js
+globalThis.tuture = '小若燕雀，亦可一展宏图';
+```
 
 > 上面的代码在浏览器或者 Node 环境中都是通用的，你可以放心使用！
 
