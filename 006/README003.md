@@ -17,3 +17,20 @@
 
 ```
 
+#### 节流
+
+> 控制流量，单位时间内事件只能触发一次
+
+```js
+  function throttle(fun, time){
+    let key;
+    return function() {
+      if (key) return;
+      key = setTimeout(() => {
+        fun.apply(this);
+        key = null;
+      }, time);
+    }
+  }
+
+```
