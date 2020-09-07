@@ -32,11 +32,11 @@ const twoSun = function(nums, target) {
     
     nums.map(item => {
         nums.map(item2 => {
-            if (item + item2 === target) {
+            if (item + item2 === target && item !== item2) {
                 arr.push(nums.indexOf(item), nums.indexOf(item2));
             }
         })
     });
 };
-twoSun([2, 7, 11, 15], 9);
+twoSun([2, 7, 11, 15], 18);
 console.log(arr);
