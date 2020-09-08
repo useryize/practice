@@ -33,6 +33,7 @@ const twoSun = function(nums, target) {
     nums.map((item, index) => {
         nums.map((itemSub, indexSub) => {
             if (item + itemSub === target && indexSub > index) {
+                // indexSub > index 减少重复 去除已经比对项
                 arr.push(nums.indexOf(item), nums.indexOf(itemSub));
             }
         })
