@@ -66,7 +66,7 @@ const threeAdd = function (nums, type) {
         nums.map((item2, index2) => {
             nums.map((item3, index3) => {
                 if (item1 + item2 + item3 === 0 && index1 < index2 && index2 < index3) {
-                    //  && index1 > index2 > index3 去除重复项
+                    //  && index1 < index2 && index2 < index3 去除重复项
                     _arr.push([item1, item2, item3]);
                 }
             });
