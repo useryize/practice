@@ -27,16 +27,41 @@
 
 // 因为 nums[0] + nums[1] = 2 + 7 = 9
 // 所以返回 [0, 1]
-let arr = [];
+
 const twoSun = function(nums, target) {
-    
-    nums.map(item => {
-        nums.map(item2 => {
-            if (item + item2 === target && item !== item2) {
-                arr.push(nums.indexOf(item), nums.indexOf(item2));
+    let arr = [];
+    nums.map((item, index) => {
+        nums.map((itemSub, indexSub) => {
+            if (item + itemSub === target && indexSub > index) {
+                arr.push(nums.indexOf(item), nums.indexOf(itemSub));
             }
         })
     });
+    console.log(arr);
 };
+
 twoSun([2, 7, 11, 15], 18);
-console.log(arr);
+
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+const twoSum2 = function (nums, target) {
+  const _arr = [];
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] + nums[j] === target) {
+        _arr.push(i, j);
+      }
+    }
+  }
+//   return _arr;
+console.log(_arr);
+};
+
+
+// twoSum2([2, 7, 11, 15], 18);
+
