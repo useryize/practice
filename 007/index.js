@@ -15,9 +15,9 @@ const twoSun = function (nums, target) {
             }
         })
     });
-    console.log(arr);
+    console.log(arr); 
 };
-// twoSun([2, 7, 11, 15], 18);
+twoSun([2, 7, 11, 15], 18);
 
 /**
  * @param {number[]} nums
@@ -81,4 +81,4 @@ const threeAdd = function (nums, type) {
     console.log(_arr);
     return _arr;
 }
-threeAdd([-1, 0, 1, 2, -1, -4], 2);
+// threeAdd([-1, 0, 1, 2, -1, -4], 2);
