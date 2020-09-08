@@ -19,19 +19,20 @@
 
 ```js
 
-let arr = [];
 const twoSun = function(nums, target) {
-    
-    nums.map(item => {
-        nums.map(item2 => {
-            if (item + item2 === target && item !== item2) {
-                arr.push(nums.indexOf(item), nums.indexOf(item2));
+    let arr = [];
+    nums.map((item, index) => {
+        nums.map((itemSub, indexSub) => {
+            if (item + itemSub === target && indexSub > index) {
+                // indexSub > index 减少重复 去除已经比对项
+                arr.push(nums.indexOf(item), nums.indexOf(itemSub));
             }
         })
     });
+    console.log(arr);
 };
+
 twoSun([2, 7, 11, 15], 18);
-console.log(arr);
 
 
 ```

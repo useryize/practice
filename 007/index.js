@@ -43,8 +43,6 @@ const twoSun = function(nums, target) {
 
 twoSun([2, 7, 11, 15], 18);
 
-
-
 /**
  * @param {number[]} nums
  * @param {number} target
