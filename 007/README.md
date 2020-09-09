@@ -38,6 +38,34 @@ const twoSun = function(nums, target) {
 twoSun([2, 7, 11, 15], 18); // [ 1, 2 ]
 
 
+// 优化 哈希表
+
+const twoSum3 = function (nums, target) {
+    if (!nums || !(nums instanceof Array)) return;
+
+    let obj = {};
+
+    // 列出nums中每项相加等于target的值
+    for (let i = 0; i < nums.length; i++) {
+        // 去重
+        if (obj[nums[i]] === undefined) {
+            obj[target - nums[i]] = nums[i];
+        }
+    }
+
+    // 找出相加等于target的两数
+    for (let j = 0; j < nums.length; j++) {
+        if (obj[nums[j]] !== undefined) {
+            console.log([nums.indexOf(obj[nums[j]]), nums.indexOf(nums[j])]);
+            // return [nums.indexOf(obj[nums[j]]), nums.indexOf(nums[j])]
+        }
+    }
+};
+
+twoSum3([2, 7, 11, 15], 18)
+
+
+
 ```
 
 
