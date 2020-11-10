@@ -115,7 +115,7 @@ const threeAdd = function (nums, type) {
         }
     }
     console.log(_arr);
-    return _arr; // [ [ -1, 0, 1 ], [ -1, 2, -1 ], [ 0, 1, -1 ] ]
+    return _arr; //  [ [ -1, 0, 1 ], [ -1, 2, -1 ], [ 0, 1, -1 ] ]
 }
 threeAdd([-1, 0, 1, 2, -1, -4], 2);
 ```
