@@ -26,7 +26,7 @@ const twoSun = function(nums, target) {
     nums.map((item, index) => {
         nums.map((itemSub, indexSub) => {
             if (item + itemSub === target && indexSub > index) {
-                // indexSub > index 减少重复 去除已经比对项
+                //  indexSub > index 减少重复 去除已经比对项
                 arr.push(nums.indexOf(item), nums.indexOf(itemSub));
             }
         })
@@ -115,7 +115,7 @@ const threeAdd = function (nums, type) {
         }
     }
     console.log(_arr);
-    return _arr; // [ [ -1, 0, 1 ], [ -1, 2, -1 ], [ 0, 1, -1 ] ]
+    return _arr; //  [ [ -1, 0, 1 ], [ -1, 2, -1 ], [ 0, 1, -1 ] ]
 }
 threeAdd([-1, 0, 1, 2, -1, -4], 2);
 ```
