@@ -62,7 +62,7 @@ const twoSum3 = function (nums, target) {
     }
 };
 
-twoSum3([2, 7, 11, 15], 18)
+twoSum3([2, 7, 11, 15], 18)  
 
 
 

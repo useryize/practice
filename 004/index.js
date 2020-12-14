@@ -16,7 +16,7 @@ Array.prototype.fakeForEach = function(fn, thisArg){
     let arr = this;
     let len = arr.length;
     for(let i=0; i<len; i++){
-        if(i in arr){//判断当前的index是否已初始化
+        if(i in arr){// 判断当前的index是否已初始化
             fn.call(thisArg, arr[i], i, arr);
         }
     }
