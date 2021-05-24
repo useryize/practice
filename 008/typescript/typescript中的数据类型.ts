@@ -27,5 +27,6 @@ let c: color = color.c; // 前下标加1
 // 任意类型 any
 
 // null 和 undefined
+
 // void类型
 // never类型F
