@@ -42,4 +42,4 @@ let noRepeat = (str) => {
 };
 
 
-console.log(noRepeat('abcabcbb')); // 3
+console.log(noRepeat('nicaiwoyoujiwei')); // 3
