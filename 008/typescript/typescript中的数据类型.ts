@@ -3,7 +3,7 @@
 //布尔类型
 let bool: Boolean = true;
 
-// 数字类型 number
+// 数字类型  number
 let num: Number = 789456;
 
 // 字符串类型 String
