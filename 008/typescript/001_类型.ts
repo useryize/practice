@@ -25,8 +25,27 @@ let c: color = color.c; // 前下标加1
 // console.log(a, b, c);
 
 // 任意类型 any
+let d: any = 123;
+d = '123';
+d = true;
+d = [132];
+// console.log(d);
+
+
 
 // null 和 undefined
 
+let e: null = null;
+let f: undefined = undefined;
+
 // void类型
-// never类型F
+
+function VoidInit(): void {
+    console.log('void');
+}
+// VoidInit()
+
+// never类型
+function error(message: string): never {
+    throw new Error(message);
+}
