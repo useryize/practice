@@ -18,7 +18,6 @@ function init2(params: params2): void {
 // init2({name: '132'}) // ok
 
 // ### 可选属性
-
 interface params3 {
     title?: string,
     name?: string,
@@ -26,6 +25,19 @@ interface params3 {
 }
 
 function init3(params: params3): void {
+    params.name = '1'; // ok
     console.log(params.name);
 }
-// init({ name: '1313' });
+// init3({ name: '1313' });
+
+// ### 只读属性
+interface params4 {
+    readonly color?: string,
+    readonly name: string,
+}
+
+let init4 = (params: params4) => {
+    // params.name = '1'; // error
+    console.log(params.name);
+}
+init4({name: '123'})

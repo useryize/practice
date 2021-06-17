@@ -7,6 +7,11 @@ function init2(params) {
     console.log(params.name);
 }
 function init3(params) {
+    params.name = '1'; // ok
     console.log(params.name);
 }
-// init({ name: '1313' });
+var init4 = function (params) {
+    // params.name = '1'; // error
+    console.log(params.name);
+};
+init4({ name: '123' });
