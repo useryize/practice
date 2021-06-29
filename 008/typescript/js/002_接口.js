@@ -14,4 +14,12 @@ var init4 = function (params) {
     // params.name = '1'; // error
     console.log(params.name);
 };
-init4({ name: '123' });
+var init5 = function (params) {
+    console.log(params.colorALl);
+};
+var init6;
+init6 = function (a, b) {
+    console.log(a, b);
+    return a + b;
+};
+init6('132', '465');
