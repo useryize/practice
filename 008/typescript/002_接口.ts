@@ -40,4 +40,32 @@ let init4 = (params: params4) => {
     // params.name = '1'; // error
     console.log(params.name);
 }
-init4({name: '123'})
+// init4({ name: '123' });
+
+
+// ### 额外的属性检查
+
+interface params5 {
+    name?: Number,
+    color?: Number,
+    [propName: string]: any,
+}
+
+let init5 = (params: params5) => {
+    console.log(params.colorALl);
+
+}
+// init5({ color: 465 } as params5)
+
+// ### 函数类型
+
+interface initParams {
+    (color: string, name: string): string;
+}
+
+let init6: initParams;
+init6 = (a: string, b: string) => {
+    console.log(a, b);
+    return a + b;
+}
+init6('132', '465');
