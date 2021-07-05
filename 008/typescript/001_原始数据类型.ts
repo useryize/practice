@@ -2,7 +2,7 @@
 // 原始数据类型包括：布尔值、数值、字符串、null、undefined 以及 ES6 中的新类型 Symbol 和 ES10 中的新类型 BigInt。
 
 
-const init_type = (): void => {
+const init_001_01= (): void => {
     // ### 布尔值
     let a: boolean = false;
 
@@ -33,4 +33,4 @@ const init_type = (): void => {
     I();
 
 }
-init_type();
+init_001_01();
