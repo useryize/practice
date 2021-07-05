@@ -4,4 +4,4 @@ const init_002_01 = (): void => {
     console.error(a);
     
 }
-init_002_01();
+init_002_01(); 
