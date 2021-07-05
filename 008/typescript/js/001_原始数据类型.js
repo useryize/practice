@@ -10,5 +10,21 @@ var init_type = function () {
     var c = '123';
     // null
     var d = null;
+    // undefined
+    var e = undefined;
+    var f = [1, 213];
+    var G;
+    (function (G) {
+        G[G["a"] = 0] = "a";
+        G[G["b"] = 1] = "b";
+    })(G || (G = {}));
+    ;
+    var h = G.a;
+    // console.log(h);
+    // 空值
+    function I() {
+        console.error(465);
+    }
+    I();
 };
 init_type();

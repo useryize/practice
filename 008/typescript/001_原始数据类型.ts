@@ -15,7 +15,22 @@ const init_type = (): void => {
 
     // null
     let d: null = null;
-    
+
+    // undefined
+    let e: undefined = undefined;
+
+    let f: Array<number> = [1, 213];
+
+    enum G { a, b };
+    let h = G.a;
+    // console.log(h);
+
+    // 空值
+
+    function I(): void {
+        console.error(465);
+    }
+    I();
 
 }
 init_type();
