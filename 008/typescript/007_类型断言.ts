@@ -8,5 +8,6 @@ const init_007 = (): void => {
     function a(a: A | B): number | string {
         return (a as A).name
     }
+    
 };
 init_007()
