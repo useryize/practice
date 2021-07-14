@@ -1,4 +1,4 @@
-const init_010 = (): void => {
+const  init_010 = (): void => {
     class A {
         name: number = 0;
         color: number = 0;
