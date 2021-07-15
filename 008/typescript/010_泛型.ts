@@ -11,7 +11,7 @@ const init_010 = (): void => {
     a.color = 2;
     a.say();
 
-    //  class B<T = {}> {
+    // class B<T = {}> {
     //     name: T
     //     say() {
     //         console.error(this.name);
