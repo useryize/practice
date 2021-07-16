@@ -13,5 +13,5 @@ fs.unlink('./002fs.js', function (error, data) {
 })
 // 读取文件
 fs.readFile('./001.js', function (error, data) {
-    // console.log(data.toString());
+    // console.log(data.toString()); 
 })
