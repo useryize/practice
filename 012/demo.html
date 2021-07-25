@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-1.11.0.min.js"></script>
+    <script src="echarts.min.js"></script>
+    <script src="china.js"></script>
+</head>
+<body>
+    <div class="wrap" style="position: relative;">
+        <div id="map" style="width: 100%; height: 900px;"></div>
+    </div>
+    <script>
+    var myChart = echarts.init(document.getElementById('map'));
+    // 失去坐标
+    var geoCoordMap = {
+        "北京": [116.41667,39.91667],
+        "上海": [121.43333,34.50000],
+        "广州": [113.23333,23.16667],
+        "杭州": [120.20000,30.26667],
+        "重庆": [106.45000, 29.56667],
+        "青岛": [120.33333,36.06667],
+        "厦门": [118.10000,24.46667],
+        "福州": [119.30000,26.08333],
+        "兰州": [103.73333,36.03333],
+        "长沙": [113.00000,28.21667],
+        "南京": [118.78333,32.05000],
+        "海外": [130.41667,36.91667],
+    };
+    //市区数据
+    var rawData = [
+        ["北京",5,20,30],
+        ["上海",10,10,30],
+        ["广州",10,50,30],
+        ["杭州",10,20,3],
+        ["重庆",10,20,8],
+        ["青岛",10,20,10],
+        ["厦门",10,20,4],
+        ["福州",10,10,30],
+        ["兰州",10,15,30],
+        ["长沙",10,25,30],
+        ["南京",10,20,5],
+        ["海外",10,5,10]
+    ];
+
+
+    function makeMapData(rawData) {
+        var mapData = [];
+        for (var i = 0; i < rawData.length; i++) {
+            var geoCoord = geoCoordMap[rawData[i][0]];//某个市区得经纬度
+            if (geoCoord) {
+                mapData.push({
+                    name: rawData[i][0],//某个市区的名称
+                    value: geoCoord.concat(rawData[i].slice(1))
+                });
+            }
+        }
+        console.log(mapData);
+        return mapData;
+    };
+
+    option = {
+        animation: false,
+        // 地图背景颜色
+        backgroundColor: new echarts.graphic.RadialGradient(0.5, 0.5, 0.4, [{
+            offset: 0,
+            color: '#fff'
+        }, {
+            offset: 1,
+            color: '#fff'
+        }]),
+        tooltip: {
+            trigger: 'axis'
+        },
+        geo: {
+            map: 'china',
+            // silent: true,
+            roam: true,
+            zoom: 0.9, // 地图初始大小
+            center: [116.366794, 40.400309], // 初始中心位置
+            label: {
+                normal:{
+                    show:false
+                },
+                emphasis: {
+                    show: false,
+                    areaColor: '#eee'
+                }
+            },
+            // 地区块儿颜色
+            itemStyle: {
+                normal: {
+                    areaColor: '#f3e5a1',
+                    borderColor: '#877167'
+                },
+                emphasis: {
+                    areaColor: '#21AEF8'
+                }
+            }
+        },
+        series: []
+    };
+
+    function renderEachCity() {
+        var option = {
+            title:[],
+            grid: [],
+            legend: {
+                x : '64%',
+                y : '30%',
+                orient:'vertical',
+                data:['乘用车','客车','专用车']
+            },
+            series: []
+        };
+
+        echarts.util.each(rawData, function(dataItem, idx) {
+            var geoCoord = geoCoordMap[dataItem[0]];
+            var coord = myChart.convertToPixel('geo', geoCoord);
+            idx += '';
+            inflationData = [
+                { name: '乘用车', value: dataItem[1] },
+                { name: '客车', value: dataItem[2] },
+                { name: '专用车', value: dataItem[3] },
+            ]
+            var total =  dataItem[1]+dataItem[2]+dataItem[3];
+            var title ={
+                text: dataItem[0],
+                textStyle:{
+                    fontSize:10,
+                    fontWeight:'bold',
+                },
+                x: coord[0]-15,
+                y: coord[1]+15
+            };
+            option.title.push(title);
+            option.grid.push({
+                id: idx,
+                gridId:idx,
+                width: 30,
+                height: 40,
+                left: coord[0] - 15,
+                top: coord[1] - 15,
+                z: 100
+            });
+            option.series.push({
+                id: idx,
+                type: 'pie',
+                label: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                lableLine: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                radius:total>50 ? '4%' :( total > 40 ? '3%' :(total>30 ? '2%':'1%')) ,
+                center:coord,
+                data: inflationData,
+                z: 100,
+                itemStyle: {
+                    normal: {
+                        color: function(params){
+                            // 柱状图每根柱子颜色
+                            var colorList = ['#fcae91','#fb6a4a','#cb181d'];
+                            return colorList[params.dataIndex];
+                        }
+                    }
+                }
+            });
+        });
+        myChart.setOption(option);
+    }
+
+    setTimeout(renderEachCity, 0);
+    // 缩放和拖拽
+    function throttle(fn, delay, debounce) {
+
+        var currCall;
+        var lastCall = 0;
+        var lastExec = 0;
+        var timer = null;
+        var diff;
+        var scope;
+        var args;
+
+        delay = delay || 0;
+
+        function exec() {
+            lastExec = (new Date()).getTime();
+            timer = null;
+            fn.apply(scope, args || []);
+        }
+
+        var cb = function() {
+            currCall = (new Date()).getTime();
+            scope = this;
+            args = arguments;
+            diff = currCall - (debounce ? lastCall : lastExec) - delay;
+
+            clearTimeout(timer);
+
+            if (debounce) {
+                timer = setTimeout(exec, delay);
+            } else {
+                if (diff >= 0) {
+                    exec();
+                } else {
+                    timer = setTimeout(exec, -diff);
+                }
+            }
+
+            lastCall = currCall;
+        };
+
+        return cb;
+    }
+
+    var throttledRenderEachCity = throttle(renderEachCity, 0);
+    myChart.on('geoRoam', throttledRenderEachCity);
+    myChart.setOption(option);
+
+
+    // 点击显示柱状图
+    myChart.on('click',function(e){
+        console.log(e)
+        // console.log(params);
+        if(e.componentSubType == "bar"){
+            // 先清除所有柱状图
+            $('.tongJiTu').remove();
+            // 创建遮挡层
+            creatWrap();
+            // 创建柱状图容器
+            var divObj = document.createElement('div');
+            $(divObj).addClass('tongJiTu');
+            divObj.id = 'zhuzhuang';
+            var divX = getMousePos()['x']; 
+            var divY = getMousePos()['y']; 
+            $(divObj).css({
+                'width': 250,
+                'height': 180,
+                'border': '1px solid #ccc',
+                'position': 'absolute',
+                'top': divY,
+                'left': divX
+            }).appendTo('.wrap');
+            // 创建柱状图
+            zhuZhuangTu();
+            // 点击遮挡层消失
+            clearWrap('.zhedang');
+        }
+        return;
+    });
+    // 获取横纵坐标
+    function getMousePos(e) {
+        var e = event || window.event;
+        var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+        var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+        var x = e.pageX || e.clientX + scrollX;
+        var y = e.pageY || e.clientY + scrollY;
+        // console.log(x,y)
+        return {'x': x,'y': y};
+    }
+    // 生成柱状图
+    function zhuZhuangTu() {
+        var zhuzhuang = echarts.init(document.getElementById('zhuzhuang'));
+        option = {
+            backgroundColor: 'rgba(255,255,255,.3)',
+            legend: {
+                data: ['数据A','数据B','数据C']
+            },
+            xAxis: [
+                {
+                    
+                    type: 'category',
+                    data: ['数据A','数据B','数据C']
+                }
+            ],
+            yAxis: [
+                {
+                    splitLine: {
+                        show: false
+                    },
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            color: function(params){
+                                var colorList = ['#F75D5D','#59ED4F','#4C91E7'];
+                                return colorList[params.dataIndex];
+                            },
+                            label: {
+                                show: true,
+                                position: 'top',
+                                textStyle: {
+                                    color: '#000'
+                                }
+                            }
+                        }
+                    },
+                    data: [10,20,30]
+                }
+            ]
+        };
+        zhuzhuang.setOption(option);
+    }
+    // 生成遮挡层
+    function creatWrap(){
+        var zheDang = document.createElement('div');
+        $(zheDang).addClass('zhedang').css({
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            backgroundColor: 'rgba(0,0,0,.2)'
+        }).appendTo('.wrap');
+    }
+    // 去掉遮挡层
+    function clearWrap(id){
+        $(id).click(function(e){
+            // console.log(this);
+            this.remove();
+            $('.tongJiTu').remove();
+            return false;
+        });
+    }
+    </script>
+</body>
+</html>
