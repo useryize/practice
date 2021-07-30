@@ -17,6 +17,6 @@ print(type(tuple1))  # <class 'tuple'>
 
 
 name = 'python'
-occupations = '666'
+occupations = 666
 
-print("%a %s" % (name, occupations)) # 格式化输出
+print("%s %d" % (name, occupations)) # 格式化输出
