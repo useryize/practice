@@ -1,4 +1,3 @@
-
 # i = 1
 # while i <= 10:
 #     print(i)
@@ -18,8 +17,8 @@ i = 1
 while i <= 9:
     j = 1
     while j <= i:
-        # print('%d * d = 1', end = '' %(d, d))
-        print(j, '*', i, '=', i * j, end='  ')
+        k = j*i
+        print('%d * %d = %d' %(j, i, k), end='  ')
         j = j + 1
     print('')
     i = i + 1
