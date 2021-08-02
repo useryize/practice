@@ -24,8 +24,8 @@
 # print(name[0:10:3])  # 起始 结束之间没隔多少位取值
 # print(name[10: 0: -2])  # 反向 从右开始算
 
-# find() 方法检测字符串中是否包含子字符串 str ，如果指定 beg（开始） 和 end（结束） 范围，则检查是否包含在指定范围内，如果包含子字符串返回开始的索引值，否则返回-1。
-# index() 方法检测字符串中是否包含子字符串 str ，如果指定 beg（开始） 和 end（结束） 范围，则检查是否包含在指定范围内，该方法与 python find()方法一样，只不过如果str不在 string中会报一个异常
+# find() 找存在 有返回下标 无返回-1。
+# index() 找存在 有返回下标 无报错
 # name = 'asdhakjsdgakjhd'
 # findName = name.find('asdasd')
 # findName2 = name.find('asdasd', 0, 1)
@@ -34,3 +34,20 @@
 # print(findName2)
 
 
+# count() 找次数
+# name = 'asdasdasd'
+# number = name.count('a')
+# print(number)  # 3
+
+# replace() 不改变原值
+# name = 'asdasdasd'
+# number = name.replace('a', '132')  # 替换全部
+# number2 = name.replace('a', '132', 1)  # 替换N次
+# print(number)
+# print(number2)
+# print('^' * 3)
+
+# split() 已指定的值分割 （无指定就用空格） 返回数组
+# name = '2021-08-02'
+# splitName = name.split('-')
+# print(splitName)  # ['2021', '08', '02']
