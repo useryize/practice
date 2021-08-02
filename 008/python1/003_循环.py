@@ -1,6 +1,6 @@
 mapList = [1, 2, 3, 4, 5, 6]
 
-# 获取列表的长度 len()
+# 获取列表的长度  len()
 length = len(mapList)
 print('mapList长度为： %d' % length)
 
