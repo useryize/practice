@@ -33,18 +33,21 @@ def test_number():
 
 
 test_number()
+init_01()
+
+c = 0
 
 
 def init_02():
-    global a
-    a = 10
+    global c
+    c = 10
 
     def test_global():
-        global a
-        a = 5
+        global c
+        c = 5
 
     test_global()
-    print(a)
+    print(c)
 
 
 init_02()
