@@ -37,7 +37,15 @@
 
 # 排序
 # sort()  reverse()
-listInfo = [6, 5, 8, 1, 2, 3]
-listInfo.sort()
-listInfo.reverse()
-print(listInfo)
+# listInfo = [6, 5, 8, 1, 2, 3]
+# listInfo.sort()
+# listInfo.reverse()
+# print(listInfo)
+
+# 嵌套
+andNumber = 0
+listInfo = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20]]
+for item in listInfo:
+    for itemSub in item:
+        andNumber += itemSub
+print(andNumber)
