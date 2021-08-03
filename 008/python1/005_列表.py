@@ -24,3 +24,13 @@
 # print(listInfo)
 
 # 修改
+# listInfo = [1, 2, 3]
+# listInfo[0] = 3
+# print(listInfo)
+
+# 删除
+# listInfo = [1, 2, 3]
+# del listInfo[0]  # 干掉下标
+# listInfo.pop()  # 干掉最后一个
+# listInfo.remove(3)  # 干掉指定类容
+# print(listInfo)
