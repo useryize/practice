@@ -34,3 +34,10 @@
 # listInfo.pop()  # 干掉最后一个
 # listInfo.remove(3)  # 干掉指定类容
 # print(listInfo)
+
+# 排序
+# sort()  reverse()
+listInfo = [6, 5, 8, 1, 2, 3]
+listInfo.sort()
+listInfo.reverse()
+print(listInfo)
