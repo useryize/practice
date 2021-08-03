@@ -24,30 +24,19 @@ def init_01():
     print(get_number)
 
 
-number = 10
-
-
-def test_number():
-    global number  # number是全局变量   嵌套函数中global报错 解决：在外层函数中同时声明全局变量
-    number = 5
-
-
-test_number()
-init_01()
-
-c = 0
+global_number = 0
 
 
 def init_02():
-    global c
-    c = 10
+    global global_number
+    global_number = 10
 
     def test_global():
-        global c
-        c = 5
+        global global_number  # global_number是全局变量 嵌套函数中改变全局变量必须使用global 而且多层嵌套时每层都需要声明
+        global_number = 5
 
     test_global()
-    print(c)
+    print(global_number)
 
 
 init_02()
