@@ -24,8 +24,8 @@ let arr = [1, 99, 98, 2, 2];
 let results = [];
 arr.map((item, index) => {
     arr.map((itemSub, indexSub) => {
-        let add = item + itemSub;
-        if (add === 100 && index > indexSub) {
+        let add = +item +  +itemSub; // 类型转换
+        if (add === 100 && index > indexSub) { // 第二层遍历 剔除已遍历过的值
             results = [...results, [item, itemSub]]
         }
     })
