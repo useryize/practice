@@ -39,4 +39,5 @@ def init_02():
     print(global_number)
 
 
+init_01()
 init_02()
