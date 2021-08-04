@@ -20,8 +20,15 @@ def init_01():
     def return_number(a, b):
         return a + b
 
-    get_number = return_number(2, 8)
-    print(get_number)
+    get_return_number = return_number(2, 8)
+    print(get_return_number)
+
+    # 函数形参默认值
+    def mr_number(a=1, b=2):
+        return a + b
+
+    get_mr_number = mr_number()
+    print(get_mr_number)
 
 
 global_number = 0
