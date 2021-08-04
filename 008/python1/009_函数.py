@@ -64,6 +64,15 @@ def init_01():
 
     print('阶乘-factorial_num_recursion', factorial_num_recursion(4))
 
+    # eval()表达式
+    def eval_def():
+        a = 1
+        b = 2
+        print('eval()表达式', a + b)
+        print('eval()表达式', eval('a + 9'))
+
+    eval_def()
+
 
 global_number = 0
 
