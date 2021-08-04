@@ -26,5 +26,14 @@ class Init01:
         self.__def_private()
 
 
-get_init01 = Init01(20, 20)
-get_init01.test(10, 10)
+# get_init01 = Init01(20, 20)
+# get_init01.test(10, 10)
+
+# 继承
+class Inheritance(Init01):
+    pass
+
+
+get_Inheritance = Inheritance()
+get_Inheritance.test()
+# print(get_Inheritance)
