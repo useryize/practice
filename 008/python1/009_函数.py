@@ -23,12 +23,46 @@ def init_01():
     get_return_number = return_number(2, 8)
     print(get_return_number)
 
-    # 函数形参默认值
-    def mr_number(a=1, b=2):
-        return a + b
+    # 函数参数
+    def mr_number(a, b=2, *args, **kwargs):
+        print('args', args)
+        print('函数缺省值', a, b, args, kwargs)
 
-    get_mr_number = mr_number()
-    print(get_mr_number)
+    mr_number(1, 22, 3, 4, 5, 6)
+
+    # 拆包
+    def parameter():
+        a, b = [1, 2]
+        c, d, *args = (1, 2, 3)
+        e, f = {'name': 1, 'color': 1}
+        a, b = b, a  # 交换
+        print('args', args)
+        print('拆包%d-%d' % (a, b))
+        print('拆包%d-%d' % (c, d))
+        print('拆包%s-%s' % (e, f))
+
+    parameter()
+
+    # 阶乘
+    def factorial_num_while(num=10):
+        i = 1
+        results = 1
+        while i <= num:
+            results *= i
+            i += 1
+        print('阶乘-factorial_num_while', results)
+
+    factorial_num_while(4)
+
+    # 阶乘 递归
+    def factorial_num_recursion(num=10):
+        results = 1
+        if num > 1:
+            results = num * factorial_num_recursion(num - 1)
+
+        return results
+
+    print('阶乘-factorial_num_recursion', factorial_num_recursion(4))
 
 
 global_number = 0
