@@ -73,6 +73,14 @@ def init_01():
 
     eval_def()
 
+    # range()
+    def range_list():
+        for item in range(10):
+            print('range', item)
+        print([x for x in range(10)])  # 列表推导式
+
+    range_list()
+
 
 global_number = 0
 
