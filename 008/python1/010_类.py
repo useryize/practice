@@ -57,14 +57,29 @@ class Inheritance03(Init01, Init02):
         print(self.a)  # 多继承 父类属性重复 则取前一个
 
 
+# 类属性 实例属性
 class Init03:
-    a = 123
+    a = 123  # 类属性
 
     def __init__(self):
-        self.a = 1
+        self.a = 1  # 实例属性
         # print(self.a)
 
 
-get_Inheritance = Init03()
-print(Init03.a)  # 类属性
-print(get_Inheritance.a)  # 实例属性
+# 类方法
+class Init04:
+    @classmethod
+    def test(cls):
+        print('类方法')  # 类方法
+
+
+# 静态方法
+class Init05:
+    @staticmethod
+    def test():
+        print('静态方法')
+
+
+get_Inheritance = Init05()
+
+get_Inheritance.test()
