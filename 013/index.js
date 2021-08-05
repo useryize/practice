@@ -63,4 +63,17 @@ const add2 = () => {
     })
     console.log(addArr);
 }
-add2()
+// 解决初始值重复不统计的问题
+const add3 = () => {
+    const obj = {} // 记录每一个数出现的个数
+    let res = 0 // 结果
+    for (let i = 0; i < arr.length; i++) {
+        let num = arr[i]
+        let temp = String(100 - num)
+        if (obj[temp]) {
+            res = res + obj[temp]
+        }
+        obj[num] = obj[num] === undefined ? 1 : obj[num] + 1;
+    }
+    console.log(res);
+}
