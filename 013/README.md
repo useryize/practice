@@ -81,5 +81,5 @@ const add3 = () => {
     }
     console.log(res);
 }
-add2()
+add2() 
 ```
