@@ -47,7 +47,6 @@ const add = () => {
 
 // 哈希值 存差值
 const add2 = () => {
-    arr = [1, 99, 2, 88]
     let obj = {}; // 存差值
     arr.map((item, index) => {
         // 去重[剔除已存在的差值对]
