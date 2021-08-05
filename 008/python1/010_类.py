@@ -41,7 +41,7 @@ class Inheritance(Init01):
 class Inheritance02(Inheritance):
     def test(self):
         self.a = 456  # 可以修改父类的属性
-        super().test()  # 找父类 找不到就往父类的父类找
+        super().test()  #  找父类 找不到就往父类的父类找
         print('2次继承 __init__')
         print(self.a)
 
