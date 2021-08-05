@@ -41,7 +41,7 @@ class Inheritance(Init01):
 class Inheritance02(Inheritance):
     def test(self):
         self.a = 456  # 可以修改父类的属性
-        super().test()  #  找父类 找不到就往父类的父类找
+        super().test()  # 找父类 找不到就往父类的父类找
         print('2次继承 __init__')
         print(self.a)
 
@@ -57,6 +57,14 @@ class Inheritance03(Init01, Init02):
         print(self.a)  # 多继承 父类属性重复 则取前一个
 
 
-get_Inheritance = Inheritance03()
-get_Inheritance.test()
-# print(get_Inheritance)
+class Init03:
+    a = 123
+
+    def __init__(self):
+        self.a = 1
+        # print(self.a)
+
+
+get_Inheritance = Init03()
+print(Init03.a)  # 类属性
+print(get_Inheritance.a)  # 实例属性
