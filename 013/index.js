@@ -20,15 +20,48 @@
 // 3
 // 提示样例 1
 
-let arr = [1, 99, 98, 2, 2];
-let results = [];
-arr.map((item, index) => {
-    arr.map((itemSub, indexSub) => {
-        let add = +item +  +itemSub; // 类型转换
-        if (add === 100 && index > indexSub) { // 第二层遍历 剔除已遍历过的值
-            results = [...results, [item, itemSub]]
-        }
-    })
+
+//生成从minNum到maxNum的随机数
+function randomNum(minNum, maxNum) {
+    return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10)
+}
+
+let arr = [];
+Array.from({ length: 10 }).map(item => {
+    arr = [...arr, randomNum(-100, 100)]
 })
 
-console.error(results);
+// 多层遍历
+const add = () => {
+    let results = [];
+    arr.map((item, index) => {
+        arr.map((itemSub, indexSub) => {
+            let add = item + itemSub;
+            if (add === 100 && index > indexSub) {
+                results = [...results, [item, itemSub]]
+            }
+        })
+    })
+    console.log(results);
+}
+
+// 哈希值 存差值
+const add2 = () => {
+    arr = [1, 99, 2, 88]
+    let obj = {}; // 存差值
+    arr.map((item, index) => {
+        // 去重[剔除已存在的差值对]
+        if (obj[item] === undefined) {
+            obj[100 - +item] = item
+        }
+    })
+
+    let addArr = [];
+    arr.map((item, index) => {
+        if (obj[item] !== undefined) {
+            addArr = [...addArr, [item, obj[item]]]
+        }
+    })
+    console.log(addArr);
+}
+add2()
