@@ -15,11 +15,26 @@ def main():
     screen.blit(aircraft, (480 / 2 - 30 / 2, 400))
 
     while True:
+        # 获取操作事件
         for item_even in pygame.event.get():
+            # 关闭事件
             if item_even.type == pygame.QUIT:
                 pygame.quit()
-                print(item_even)
                 exit()
+            # 键盘事件
+            elif item_even.type == pygame.KEYDOWN:
+                # 按上键盘左建
+                if item_even.key == pygame.K_w or item_even.key == pygame.K_UP:
+                    print('上')
+                # 按下键盘左建
+                elif item_even.key == pygame.K_s or item_even.key == pygame.K_DOWN:
+                    print('下')
+                # 按下键盘左建
+                elif item_even.key == pygame.K_a or item_even.key == pygame.K_LEFT:
+                    print('左')
+                # 按下键盘右建
+                elif item_even.key == pygame.K_d or item_even.key == pygame.K_RIGHT:
+                    print('右')
 
         pygame.display.update()
 
