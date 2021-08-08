@@ -16,7 +16,7 @@ def main():
     screen.blit(aircraft, (480 / 2 - 30 / 2, 400))
 
     while True:
-        # 获取操作事件 pygame.event.get()返回数组
+        # 获取操作事件  pygame.event.get()返回数组
         for item_even in pygame.event.get():
             # 关闭事件
             if item_even.type == pygame.QUIT:
