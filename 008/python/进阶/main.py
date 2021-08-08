@@ -12,7 +12,7 @@ def main():
     screen.fill((0, 0, 0))
     # 导入飞机图片
     aircraft = pygame.image.load('aaa.jpg')
-    # 将飞机导入到窗口上
+    # 将飞机导入 到窗口上
     screen.blit(aircraft, (480 / 2 - 30 / 2, 400))
 
     while True:
