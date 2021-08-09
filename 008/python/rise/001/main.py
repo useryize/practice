@@ -112,6 +112,20 @@ class Bullets:
         self.y -= self.speed
 
 
+# 敌机类
+class Enemy:
+    def __init__(self, screen):
+        self.enemy_img = pygame.image.load('icon02.jpg')
+        self.x = 0
+        self.y = 0
+        self.speed = 0
+        self.screen = screen
+
+    def display_enemy(self):
+        self.screen.blit(self.enemy_img, (self.x, self.y))
+        # 敌机子弹发射后 y值自动增加
+
+
 def main():
     pygame.init()
 
@@ -121,6 +135,8 @@ def main():
     pygame.display.set_caption('easy')
     # 获取飞机类
     get_aircraft = Aircraft(screen)
+    # 获取敌机类
+    get_enemy = Enemy(screen)
 
     while True:
         # 执行飞机监听事件
@@ -128,6 +144,9 @@ def main():
 
         # 显示飞机
         get_aircraft.display_aircraft()
+
+        # 显示敌机
+        get_enemy.display_enemy()
 
         time.sleep(0.01)
         pygame.display.update()
