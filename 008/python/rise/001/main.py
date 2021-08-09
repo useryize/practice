@@ -2,6 +2,7 @@ import pygame
 import time
 
 
+# 飞机类
 class Aircraft:
     def __init__(self, screen, window_w, window_h):
         # 导入飞机图片
@@ -37,14 +38,31 @@ class Aircraft:
         if key_pressed[pygame.K_d] or key_pressed[pygame.K_RIGHT]:
             self.x_position += self.speed
         if key_pressed[pygame.K_SPACE]:
-            pass
+            # 按空格发射子弹
+            # self.screen.fill((30, 8, 7))
+            # self.screen.blit(self.aircraft, (0, 0))
+            # 将飞机导入到窗口上
+            get_bullets = Bullets(self.screen, self.x_position, self.y_position)
+            get_bullets.display_bullets()
 
     def display_aircraft(self):
         # 设置背景颜色
         self.screen.fill((30, 8, 7))
         # 将飞机导入到窗口上
         self.screen.blit(self.aircraft, (self.x_position, self.y_position))
-        pygame.display.update()
+
+
+# 子弹类
+class Bullets:
+    def __init__(self, screen, x, y):
+        self.bullets_img = pygame.image.load('icon01.jpg')
+        self.x = 0
+        self.y = 0
+        self.screen = screen
+
+    # 显示子弹
+    def display_bullets(self):
+        self.screen.blit(self.bullets_img, (0, 0))
 
 
 def main():
@@ -61,8 +79,6 @@ def main():
     get_aircraft = Aircraft(screen, window_w, window_h)
 
     while True:
-
-
         # 执行飞机监听事件
         get_aircraft.get_pressed_aircraft()
 
@@ -70,6 +86,7 @@ def main():
         get_aircraft.display_aircraft()
 
         time.sleep(0.01)
+        pygame.display.update()
 
 
 if __name__ == '__main__':
