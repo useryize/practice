@@ -1,12 +1,12 @@
 import pygame
 import time
+import random
 
 
 # 飞机类
 class Aircraft:
     def __init__(self, screen, window_w, window_h, aircraft_w, aircraft_h):
         """
-
         :param screen: 窗口对象
         :param window_w: 窗口宽度
         :param window_h: 窗口高度
@@ -38,6 +38,16 @@ class Aircraft:
             if item_even.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+            # 按键事件
+            elif item_even.type == pygame.KEYDOWN:
+                # 空格
+                if item_even.key == pygame.K_SPACE:
+                    # 按空格发射子弹
+                    get_bullets = Bullets(self.screen, self.x_position, self.y_position, self.aircraft_w,
+                                          self.aircraft_h)
+
+                    # 保存每一颗子弹
+                    self.bulletsList.append(get_bullets)
 
         # 获取键盘按下事件
         key_pressed = pygame.key.get_pressed()
@@ -54,12 +64,12 @@ class Aircraft:
         if key_pressed[pygame.K_d] or key_pressed[pygame.K_RIGHT]:
             self.x_position += self.speed
 
-        if key_pressed[pygame.K_SPACE]:
-            # 按空格发射子弹
-            get_bullets = Bullets(self.screen, self.x_position, self.y_position, self.aircraft_w, self.aircraft_h)
-
-            # 保存每一颗子弹
-            self.bulletsList.append(get_bullets)
+        # if key_pressed[pygame.K_SPACE]:
+        #     # 按空格发射子弹
+        #     get_bullets = Bullets(self.screen, self.x_position, self.y_position, self.aircraft_w, self.aircraft_h)
+        #
+        #     # 保存每一颗子弹
+        #     self.bulletsList.append(get_bullets)
 
     def display_aircraft(self):
         # 设置背景颜色
@@ -70,6 +80,7 @@ class Aircraft:
         # 遍历子弹列表 并将每一颗子弹显示
         for item in self.bulletsList:
             # 没一个item都是一个子弹类的实例
+            item.auto_moving()
             item.display_bullets()
 
 
@@ -82,9 +93,14 @@ class Bullets:
         :param y: y坐标
         """
         self.bullets_img = pygame.image.load('icon01.jpg')
-        self.x = x + z/2 - 5
+        self.x = x + z / 2 - 5
         self.y = y - 10
         self.screen = screen
+        self.speed = 2
+
+    # 子弹自动移动
+    def auto_moving(self):
+        self.y -= self.speed
 
     # 显示子弹
     def display_bullets(self):
