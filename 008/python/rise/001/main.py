@@ -2,32 +2,19 @@ import pygame
 import time
 
 
-def main():
-    pygame.init()
-    # 窗口宽度
-    window_w = 480
-    # 窗口高度
-    window_h = 480
-    # 飞机坐标轴
-    x_position = window_h / 2 - 30 / 2
-    y_position = 400
-    # 飞机移动速度
-    speed = 3
+class Aircraft:
+    def __init__(self, screen, window_w, window_h):
+        # 导入飞机图片
+        self.aircraft = pygame.image.load('./icon.png')
+        # 飞机坐标轴
+        self.x_position = window_h / 2 - 30 / 2
+        self.y_position = window_w - 100
+        # 飞机移动速度
+        self.speed = 3
+        self.screen = screen
 
-    # 创建窗口
-    screen = pygame.display.set_mode((window_w, window_h), 0, 32)
-    # 创建窗口标题
-    pygame.display.set_caption('easy')
-    # 导入飞机图片
-    aircraft = pygame.image.load('./icon.png')
-
-    while True:
-
-        # 设置背景颜色
-        screen.fill((62, 105, 115))
-        # 将飞机导入  到窗口上
-        screen.blit(aircraft, (x_position, y_position))
-
+    # 监听键盘事件
+    def get_pressed_aircraft(self):
         # 获取操作事件  pygame.event.get()返回数组
         for item_even in pygame.event.get():
             # 关闭事件
@@ -35,22 +22,53 @@ def main():
                 pygame.quit()
                 exit()
 
-        key_pressed = pygame.key.get_pressed()  # 获取键盘按下事件
+        # 获取键盘按下事件
+        key_pressed = pygame.key.get_pressed()
         # print('上')
         if key_pressed[pygame.K_w] or key_pressed[pygame.K_UP]:
-            y_position -= speed
+            self.y_position -= self.speed
         # print('下')
         if key_pressed[pygame.K_s] or key_pressed[pygame.K_DOWN]:
-            y_position += speed
+            self.y_position += self.speed
         # print('左')
         if key_pressed[pygame.K_a] or key_pressed[pygame.K_LEFT]:
-            x_position -= speed
+            self.x_position -= self.speed
         # print('右')
         if key_pressed[pygame.K_d] or key_pressed[pygame.K_RIGHT]:
-            x_position += speed
+            self.x_position += self.speed
         if key_pressed[pygame.K_SPACE]:
-            print('空格')
+            pass
+
+    def display_aircraft(self):
+        # 设置背景颜色
+        self.screen.fill((30, 8, 7))
+        # 将飞机导入到窗口上
+        self.screen.blit(self.aircraft, (self.x_position, self.y_position))
         pygame.display.update()
+
+
+def main():
+    pygame.init()
+    # 窗口宽度
+    window_w = 480
+    # 窗口高度
+    window_h = 480
+    # 创建窗口
+    screen = pygame.display.set_mode((window_w, window_h))
+    # 创建窗口标题
+    pygame.display.set_caption('easy')
+    # 获取飞机类
+    get_aircraft = Aircraft(screen, window_w, window_h)
+
+    while True:
+
+
+        # 执行飞机监听事件
+        get_aircraft.get_pressed_aircraft()
+
+        # 显示飞机
+        get_aircraft.display_aircraft()
+
         time.sleep(0.01)
 
 
