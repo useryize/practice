@@ -66,6 +66,16 @@ class Aircraft:
         # print('右')
         if key_pressed[pygame.K_d] or key_pressed[pygame.K_RIGHT]:
             self.x_position += self.speed
+            
+        # 飞机超出宽度时
+        if self.x_position > window_w - aircraft_w:
+            self.x_position = window_w - aircraft_w
+        if self.x_position < 0:
+            self.x_position = 0
+        if self.y_position > window_h - aircraft_h:
+            self.y_position = window_h - aircraft_h
+        if self.y_position < 0:
+            self.y_position = 0
 
         # 子弹触发频率高 改为按键触发
         # if key_pressed[pygame.K_SPACE]:
@@ -124,6 +134,12 @@ class Enemy:
     def display_enemy(self):
         self.screen.blit(self.enemy_img, (self.x, self.y))
         # 敌机子弹发射后 y值自动增加
+
+
+# 敌机子弹
+class EnemyBullets:
+    def __init__(self, screen):
+        pass
 
 
 def main():
