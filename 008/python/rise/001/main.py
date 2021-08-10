@@ -14,6 +14,10 @@ aircraft_h = 30
 bullets_w = 10
 bullets_h = 10
 
+# 飞机可操作区域
+operation_area_w = window_w - aircraft_w
+operation_area_h = window_h - aircraft_h
+
 
 # 飞机类
 class Aircraft:
@@ -66,14 +70,14 @@ class Aircraft:
         # print('右')
         if key_pressed[pygame.K_d] or key_pressed[pygame.K_RIGHT]:
             self.x_position += self.speed
-            
+
         # 飞机超出宽度时
-        if self.x_position > window_w - aircraft_w:
-            self.x_position = window_w - aircraft_w
+        if self.x_position > operation_area_w:
+            self.x_position = operation_area_w
         if self.x_position < 0:
             self.x_position = 0
-        if self.y_position > window_h - aircraft_h:
-            self.y_position = window_h - aircraft_h
+        if self.y_position > operation_area_h:
+            self.y_position = operation_area_h
         if self.y_position < 0:
             self.y_position = 0
 
@@ -128,12 +132,24 @@ class Enemy:
         self.enemy_img = pygame.image.load('icon02.jpg')
         self.x = 0
         self.y = 0
-        self.speed = 0
+        self.speed = 3
         self.screen = screen
+        self.direction = 'right'
 
+    # 显示敌机
     def display_enemy(self):
         self.screen.blit(self.enemy_img, (self.x, self.y))
-        # 敌机子弹发射后 y值自动增加
+
+    # 敌机自动移动
+    def auto_moving(self):
+        if self.direction == 'right':
+            self.x += self.speed
+        if self.direction == 'left':
+            self.x -= self.speed
+        if self.x > operation_area_w:
+            self.direction = 'left'
+        if self.x < 0:
+            self.direction = 'right'
 
 
 # 敌机子弹
@@ -163,6 +179,8 @@ def main():
 
         # 显示敌机
         get_enemy.display_enemy()
+        # 敌机移动
+        get_enemy.auto_moving()
 
         time.sleep(0.01)
         pygame.display.update()
