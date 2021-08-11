@@ -151,8 +151,12 @@ class Enemy:
     # 显示敌机
     def display_enemy(self):
         self.screen.blit(self.enemy_img, (self.x, self.y))
-        get_enemy_bullets = EnemyBullets(self.screen, self.x, self.y)
-        self.enemy_bullets_list.append(get_enemy_bullets)
+
+        # 创建子弹 并降低子弹发射评率
+        random_number = random.randint(0, 50)
+        if random_number == 10:
+            get_enemy_bullets = EnemyBullets(self.screen, self.x, self.y)
+            self.enemy_bullets_list.append(get_enemy_bullets)
 
     # 敌机自动移动
     def auto_moving(self):
@@ -164,12 +168,14 @@ class Enemy:
             self.direction = 'left'
         if self.x < 0:
             self.direction = 'right'
+
+        # 自动发射子弹
         for item in self.enemy_bullets_list:
             item.display()
             item.auto_launch()
 
 
-#  敌机子弹
+# 敌机子弹
 class EnemyBullets:
     def __init__(self, screen, x, y):
         self.enemy_bullets_img = pygame.image.load('icon03.jpg')
@@ -177,14 +183,13 @@ class EnemyBullets:
         # 子弹坐标 敌机很坐标 + 敌机本身一半 - 子弹本身一半
         self.x = x + enemy_w / 2 - enemyBullets_w / 2
         self.y = y + enemy_h
-        self.speed = 10
+        self.speed = 3
 
     def display(self):
         self.screen.blit(self.enemy_bullets_img, (self.x, self.y))
 
     def auto_launch(self):
         self.y += self.speed
-        print(self.y)
 
 
 def main():
