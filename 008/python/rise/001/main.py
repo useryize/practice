@@ -14,6 +14,14 @@ aircraft_h = 30
 bullets_w = 10
 bullets_h = 10
 
+# 敌机宽高
+enemy_w = 20
+enemy_h = 20
+
+# 敌机子弹宽高
+enemyBullets_w = 10
+enemyBullets_h = 10
+
 # 飞机可操作区域
 operation_area_w = window_w - aircraft_w
 operation_area_h = window_h - aircraft_h
@@ -99,6 +107,7 @@ class Aircraft:
         for item in self.bulletsList:
             # 每一个item都是一个子弹类的实例
             item.display_bullets()
+            item.auto_moving()
 
 
 # 子弹类
@@ -112,7 +121,7 @@ class Bullets:
         self.bullets_img = pygame.image.load('icon01.jpg')
         self.screen = screen
 
-        # 子弹坐标
+        # 子弹坐标 横坐标起始值为 飞机横坐标 + 飞机本身宽度一半 - 子弹本身一半
         self.x = x + aircraft_w / 2 - bullets_w / 2
         self.y = y - 10
 
@@ -122,7 +131,9 @@ class Bullets:
     # 显示子弹
     def display_bullets(self):
         self.screen.blit(self.bullets_img, (self.x, self.y))
-        # 子弹显示后 下次Y值减移动速度
+
+    # 子弹自动移动
+    def auto_moving(self):
         self.y -= self.speed
 
 
@@ -135,10 +146,13 @@ class Enemy:
         self.speed = 3
         self.screen = screen
         self.direction = 'right'
+        self.enemy_bullets_list = []
 
     # 显示敌机
     def display_enemy(self):
         self.screen.blit(self.enemy_img, (self.x, self.y))
+        get_enemy_bullets = EnemyBullets(self.screen, self.x, self.y)
+        self.enemy_bullets_list.append(get_enemy_bullets)
 
     # 敌机自动移动
     def auto_moving(self):
@@ -150,12 +164,27 @@ class Enemy:
             self.direction = 'left'
         if self.x < 0:
             self.direction = 'right'
+        for item in self.enemy_bullets_list:
+            item.display()
+            item.auto_launch()
 
 
 # 敌机子弹
 class EnemyBullets:
-    def __init__(self, screen):
-        pass
+    def __init__(self, screen, x, y):
+        self.enemy_bullets_img = pygame.image.load('icon03.jpg')
+        self.screen = screen
+        # 子弹坐标 敌机很坐标 + 敌机本身一半 - 子弹本身一半
+        self.x = x + enemy_w / 2 - enemyBullets_w / 2
+        self.y = y + enemy_h
+        self.speed = 10
+
+    def display(self):
+        self.screen.blit(self.enemy_bullets_img, (self.x, self.y))
+
+    def auto_launch(self):
+        self.y += self.speed
+        print(self.y)
 
 
 def main():
