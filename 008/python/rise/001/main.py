@@ -169,7 +169,7 @@ class Enemy:
             item.auto_launch()
 
 
-# 敌机子弹
+#  敌机子弹
 class EnemyBullets:
     def __init__(self, screen, x, y):
         self.enemy_bullets_img = pygame.image.load('icon03.jpg')
