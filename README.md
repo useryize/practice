@@ -1,5 +1,7 @@
 ##### 学如逆水行舟
 
+###### 20210812
+> [算法] [找给定数的最小因子（大于1）的连乘形式](https://github.com/useryize/practice/blob/master/010/003/README.md)
 
 ###### 20210804
 > [算法] [找出这N个整数中和为100的整数的对数](https://github.com/useryize/practice/blob/master/010/001/README.md)
