@@ -31,6 +31,7 @@ const add = (list) => {
             return;
         }
         for (let item of list) {
+            // if (arr.indexOf(item) > -1) continue; // 此方法耗性能
             if (obj[item]) continue; // 本次已经拿来递归的值 不用拿来排
             obj[item] = true; // 标记本次递归查找已经用了这个值
             fun([...arr, item]); // 本次递归结束后把比较的值还原 进入第二个数的递归查找
