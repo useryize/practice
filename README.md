@@ -1,5 +1,8 @@
 ##### 学如逆水行舟
 
+###### 20210816
+> [算法] [全排列](https://github.com/useryize/practice/blob/master/010/004/README.md)
+
 ###### 20210812
 > [算法] [找给定数的最小因子（大于1）的连乘形式](https://github.com/useryize/practice/blob/master/010/003/README.md)
 
