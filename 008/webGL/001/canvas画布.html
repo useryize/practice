@@ -1,1 +1,57 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+</body>
+<script>
+
+    // 如何得到圆上每个点的坐标？
+    // 解决思路：根据三角形的正玄、余弦来得值；
+    // 假设一个圆的圆心坐标是(a,b)，半径为r，
+    // 则圆上每个点的X坐标=a + Math.sin(2*Math.PI / 360) * r  Y坐标=b + Math.cos(2*Math.PI / 360) * r
+    // Math.sin(x) x 的正玄值。返回值在 -1.0 到 1.0 之间；
+    // Math.cos(x) x 的余弦值。返回的是 -1.0 到 1.0 之间的数；
+    // 这两个函数中的X 都是指的“弧度”而非“角度”，弧度的计算公式为： 2*PI/360*角度；
+    // 30° 角度 的弧度 = 2*PI/360*30
+    let canvas = document.getElementById('canvas')
+    const w = 500, h = 500;
+    const setStyleList = {
+        backgroundColor: '#e6ffe6'
+    }
+    // 设置canvas样式
+    Object.keys(setStyleList).map(item => {
+        canvas.style[item] = setStyleList[item]
+    })
+    let c = canvas.getContext('2d')
+    // 平移坐标原点
+    c.translate(w / 2, h / 2)
+
+    // 设置线的颜色
+    c.strokeStyle = '#000000'
+
+    let x = [], y = []; // 横纵坐标数组
+    for (let i = 0; i < 6; i++) {
+        let r = 200 // 六边形正圆
+        x[i] = r * Math.cos(2 * Math.PI / 6 * i)
+        y[i] = r * Math.sin(2 * Math.PI / 6 * i)
+    }
+    
+    c.moveTo(x[0], y[0]) // 定义初始点
+    for (let i = 1; i < 6; i++) {
+        c.lineTo(x[i], y[i]); // 定义剩下点
+    }
+    c.closePath() // 设置轮廓闭合 最后一个点与第一个点连线
+    c.stroke() // 开始绘图
+
+</script>
+
+</html>
