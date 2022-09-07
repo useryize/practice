@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500" style="background-color: blue;"></canvas>
+</body>
+<script>
+    // 封装着色器函数
+    const initShader = (gl, vertexColor, piecesColor) => {
+        // 创建顶点着色器对象
+        const vertexObj = gl.createShader(gl.VERTEX_SHADER);
+        // 创建片元着色器对象
+        const piecesObj = gl.createShader(gl.FRAGMENT_SHADER);
+        // 引入顶点/片元 着色器
+        gl.shaderSource(vertexObj, vertexColor)
+        gl.shaderSource(piecesObj, piecesColor)
+        // 编译顶点/片元 着色器
+        gl.compileShader(vertexObj)
+        gl.compileShader(piecesObj)
+
+        // 创建程序对象
+        const program = gl.createProgram()
+        // 顶点着色器和片元着色器挂载到程序对象
+        gl.attachShader(program, vertexObj)
+        gl.attachShader(program, piecesObj)
+
+        // 链接程序对象
+        gl.linkProgram(program)
+
+        // 使用程序对象
+        gl.useProgram(program)
+        return program
+    }
+    const canvasId = document.getElementById('canvas')
+    const gl = canvasId.getContext('webgl') // 获取webgl上下文
+    // 顶点着色器
+    const vertexColor = `
+        void main(){
+            gl_PointSize = 20.0;
+            gl_Position = vec4(0,0.0,0.0,1.0);
+        }
+    `
+    // 片元着色器
+    const piecesColor = `
+        void main () {
+            gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+        }
+    `
+    // 初始化着色器
+    const program = initShader(gl, vertexColor, piecesColor);
+    console.error(program);
+    gl.drawArrays(gl.POINTS, 0, 1);
+    
+</script>
+
+</html>
