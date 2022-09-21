@@ -1,11 +1,16 @@
 {
-  "name": "threejs",
+  "name": "001",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.7.0",
+    "three": "^0.144.0"
+  }
 }
