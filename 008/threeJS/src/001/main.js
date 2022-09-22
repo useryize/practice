@@ -22,6 +22,9 @@ const cube1 = new THREE.Mesh(boxGeometry, meshBasicMaterial)
 const cube2 = new THREE.Mesh(boxGeometry, meshBasicMaterial)
 const cube3 = new THREE.Mesh(boxGeometry, meshBasicMaterial)
 
+// 修改物体位置
+// cube1.position.set(5, 00, 0)
+
 // 将物体添加到场景中
 scene.add(cube1)
 scene.add(cube2)
