@@ -23,15 +23,18 @@ const cube2 = new THREE.Mesh(boxGeometry, meshBasicMaterial)
 const cube3 = new THREE.Mesh(boxGeometry, meshBasicMaterial)
 
 // 修改物体位置
-// cube1.position.set(5, 00, 0)
+cube1.position.set(5, 00, 0)
 
 // 物体缩放
-cube1.scale.set(3, 2, 1)
+// cube1.scale.set(3, 2, 1)
+
+// 物体旋转
+cube1.rotation.set(Math.PI / 4, 0, 0, 'XYZ')
 
 // 将物体添加到场景中
 scene.add(cube1)
-scene.add(cube2)
-scene.add(cube3)
+// scene.add(cube2)
+// scene.add(cube3)
 
 
 // 初始化渲染器
