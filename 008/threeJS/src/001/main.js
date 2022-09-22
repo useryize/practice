@@ -25,6 +25,9 @@ const cube3 = new THREE.Mesh(boxGeometry, meshBasicMaterial)
 // 修改物体位置
 // cube1.position.set(5, 00, 0)
 
+// 物体缩放
+cube1.scale.set(3, 2, 1)
+
 // 将物体添加到场景中
 scene.add(cube1)
 scene.add(cube2)
@@ -53,7 +56,7 @@ scene.add(AxesHelper)
 
 // 封装渲染函数
 function renderFun() {
-    cubeMoving()
+    // cubeMoving()
     render.render(scene, camera)
     // 渲染下一帧时执行函数 window.requestAnimationFrame(callback); Html5新增神器
     requestAnimationFrame(renderFun)
