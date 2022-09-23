@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原生js</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+        }
+        #box2{
+            width: 100px;
+            height: 100px;
+            background: blueviolet;
+            position: relative;
+            cursor: move;
+        }
+        #amplification{
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            background: chartreuse;
+            cursor: se-resize;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div style="position: absolute;">
+            <div id="box2">
+            </div>
+            <div id="amplification"></div>
+        </div>
+    </div>
+
+</body>
+<script>
+    var o_bigBox = document.querySelector('#box');
+    var o_box = document.querySelector('#box2');
+    var o_span = document.querySelector('#amplification');
+    o_box.onmousedown = function(evt){
+        var e = evt || window.event;
+        var target = e.target || e.srcElement;
+        // e.offsetX e.offsetY鼠标相对于div的坐标
+        var offx = e.offsetX;
+        var offy = e.offsetY;
+        o_bigBox.onmousemove = function(evt){
+            var e = evt || window.event;
+            // e.offsetX e.offsetY鼠标相对于div的坐标
+            var left = e.pageX - offx;
+            var top = e.pageY - offy;
+            if(left <= 0){
+                left = 0;
+            }else if(left >= o_bigBox.offsetWidth - o_box.offsetWidth){
+                left = o_bigBox.offsetWidth - o_box.offsetWidth;
+            }
+            if(top <= 0){
+                top = 0
+            }else if(top >= o_bigBox.offsetHeight - o_box.offsetHeight){
+                top = o_bigBox.offsetHeight - o_box.offsetHeight;
+            }
+            o_box.style.marginLeft = left + "px";
+            o_box.style.marginTop = top + 'px';
+        }
+        document.onmouseup = function(){
+            o_bigBox.onmousemove = null;
+        }
+    }
+    // 拖拽div改变大小
+    var disX = 0;//鼠标按下时光标的X值
+    var disY = 0;//鼠标按下时光标的Y值
+    var disW = 0; //拖拽前div的宽
+    var disH = 0; // 拖拽前div的高
+    o_span.onmousedown = function (evt) {
+        if(e && e.preventDefault) {   　　//阻止默认浏览器动作(W3C)   　　
+            e.preventDefault();   
+        } else {   　　//IE中阻止函数器默认动作的方式    　　
+            window.event.returnValue = false;    
+        } 
+        var e = evt || window.event;
+        disX = e.clientX; // 获取鼠标按下时光标x的值
+        disY = e.clientY; // 获取鼠标按下时光标Y的值
+        disW = o_box.offsetWidth; // 获取拖拽前div的宽
+        disH = o_box.offsetHeight; // 获取拖拽前div的高
+        document.onmousemove = function (evt) {
+            var e = evt || window.event;
+            if(e && e.preventDefault) {   　　//阻止默认浏览器动作(W3C)   　　
+                e.preventDefault();   
+            } else {   　　//IE中阻止函数器默认动作的方式    　　
+                window.event.returnValue = false;    
+            } 
+            //拖拽时为了对宽和高 限制一下范围，定义两个变量
+            var W =  e.clientX - disX + disW;
+            var H =  e.clientY - disY + disH;
+            //获取容器的宽高
+            var boxwidth=document.getElementById('box').offsetWidth;
+            var boxheight=document.getElementById('box').offsetHeight;
+            console.log(boxwidth,boxheight)
+            
+            if(boxwidth - e.clientX < 0){
+                W = boxwidth - parseInt(o_box.style.marginLeft);
+            }
+            if(boxheight - e.clientY < 0){
+                H = boxheight - parseInt(o_box.style.marginTop);
+            }
+            o_box.style.width =W +'px';// 拖拽后物体的宽
+            o_box.style.height = H +'px';// 拖拽后物体的高
+        }
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    }
+</script>
+</html>
