@@ -66,6 +66,8 @@ function renderFun(time) {
 }
 
 // 封装物体移动
+// let clock = new THREE.Clock()
+// clock.getElapsedTime()
 let num = 0
 let numType = 1
 let speed = 0.1
