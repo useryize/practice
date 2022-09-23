@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls' // 导入轨道控制器
+import gsap from 'gsap' // gsap动画库
 // 创建场景
 const scene = new THREE.Scene()
 
@@ -56,10 +57,10 @@ const AxesHelper = new THREE.AxesHelper(10)
 // 将辅助器添加到场景中
 scene.add(AxesHelper)
 
-
+gsap.to(cube1.position, { x: 10, duration: 10,  })
 // 封装渲染函数
 function renderFun(time) {
-    cubeMoving(time)
+    // cubeMoving(time)
     render.render(scene, camera)
     // 渲染下一帧时执行函数 window.requestAnimationFrame(callback); Html5新增神器 回调默认参数time(毫秒)
     requestAnimationFrame(renderFun)
