@@ -73,7 +73,87 @@ modalInit('封装modal', () => {
 ```
 
 
+```js
+// 全排列
+const add = (list) => {
+    let res = [];
+    let obj = {};
+    const fun = (arr = []) => {
+        if (arr.length === list.length) {
+            res = [...res, arr]
+            return;
+        }
+        for (let item of list) {
+            if (obj[item]) continue;
+            obj[item] = true;
+            fun([...arr, item]);
+            obj[item] = false;
+        }
 
+    }
+    fun();
+    return res
+}
+console.log(add([1, 2, 3]));
+
+```
+
+
+```js
+// 转换类型
+var obj = [
+    { id: 3, parentId: 2 },
+    { id: 1, parentId: null },
+    { id: 2, parentId: 1 },
+]
+
+const transf = (info) => {
+    const newInfo = [...info];
+    return newInfo.filter(item => {
+        const children = newInfo.filter(itemChild => {
+            if (item.id === itemChild.parentId) {
+                itemChild.isChild = true
+            }
+            return item.id === itemChild.parentId
+        })
+        if (children.length) {
+            item.children = children
+        }
+        return !item.isChild
+    }).find(item => !item.isChild)
+}
+console.log(transf(obj))
+```
+
+```js
+// 防抖
+const debounce = (fun, time) => {
+    let key;
+    return function (...args) {
+        if (key) {
+            clearTimeout(key)
+        }
+        key = setTimeout(() => {
+            fun.call(this, args);
+        }, time);
+    };
+};
+document.addEventListener("scroll", debounce(() => console.error(" 防抖执行了 "), 1000));
+
+
+// 节流
+function throttle(fun, time) {
+    let key;
+    return function (...args) {
+        if (key) return;
+        key = setTimeout(() => {
+            fun.apply(this, args);
+            key = null;
+        }, time);
+    }
+}
+document.addEventListener("scroll", throttle(() => console.error(" 防抖执行了 "), 1000));
+```
 
 
 
