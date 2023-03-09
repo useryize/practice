@@ -44,30 +44,33 @@ const debounce = (fun, time) => {
   }
 
 ```
+
+```js
 // model对话框
 const modalInit = (msg, fun) => {
-        const div = document.createElement('div')
-        div.innerHTML = `<div class="mainBox">
-                <div class="mask"></div>
-                <div class="center">
-                    <div>${msg}</div>
-                    <div class="btn">
-                        <div class="clear">关闭</div>    
-                        <div class="btn">确定</div>    
-                    </div>
-                <div>
-            </div>
-            `
-        document.body.append(div)
+    const div = document.createElement('div')
+    div.innerHTML = `<div class="mainBox">
+            <div class="mask"></div>
+            <div class="center">
+                <div>${msg}</div>
+                <div class="btn">
+                    <div class="clear">关闭</div>    
+                    <div class="btn">确定</div>    
+                </div>
+            <div>
+        </div>
+        `
+    document.body.append(div)
 
-        document.querySelector('.btn').onclick = fun
-        document.querySelector('.clear').onclick = function () {
-            div.remove()
-        }
+    document.querySelector('.btn').onclick = fun
+    document.querySelector('.clear').onclick = function () {
+        div.remove()
     }
-    modalInit('封装modal', () => {
-        console.log('确定按钮回调')
-    })
+}
+modalInit('封装modal', () => {
+    console.log('确定按钮回调')
+})
+```
 
 
 
