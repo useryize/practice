@@ -102,19 +102,22 @@ console.log(add([1, 2, 3]));
 ```js
 // 转换类型
 var obj = [
-    { id: 3, parentId: 2 },
-    { id: 1, parentId: null },
-    { id: 2, parentId: 1 },
+    { id: 3, parent: 2 },
+    { id: 1, parent: null },
+    { id: 2, parent: 1 },
 ]
+
+
+
 
 const transf = (info) => {
     const newInfo = [...info];
     return newInfo.filter(item => {
         const children = newInfo.filter(itemChild => {
-            if (item.id === itemChild.parentId) {
+            if (item.id === itemChild.parent) {
                 itemChild.isChild = true
             }
-            return item.id === itemChild.parentId
+            return item.id === itemChild.parent
         })
         if (children.length) {
             item.children = children
@@ -123,6 +126,9 @@ const transf = (info) => {
     }).find(item => !item.isChild)
 }
 console.log(transf(obj))
+
+
+
 ```
 
 ```js
