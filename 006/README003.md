@@ -14,7 +14,17 @@
       }, time);
     }
   }
-
+const debounce = (fun, time) => {
+    let key;
+    return function (...args) {
+        if (key) {
+            clearTimeout(key)
+        }
+        key = setTimeout(() => {
+            fun.call(this, args);
+        }, time);
+    };
+};
 ```
 
 #### 节流
@@ -24,10 +34,10 @@
 ```js
   function throttle(fun, time){
     let key;
-    return function() {
+    return function(...args) {
       if (key) return;
       key = setTimeout(() => {
-        fun.apply(this);
+        fun.apply(this,args);
         key = null;
       }, time);
     }
