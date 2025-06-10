@@ -1,8 +1,8 @@
 ##### 学如逆水行舟
 
 ###### 20250610
-> [js] [合并两个有序数组] (https://github.com/useryize/practice/tree/master/011/001/README.md#1)
-> [js] [移除元素] (https://github.com/useryize/practice/tree/master/011/001/README.md#2)
+> [js] [合并两个有序数组](https://github.com/useryize/practice/tree/master/011/001/README.md#1)
+  [js] [移除元素](https://github.com/useryize/practice/tree/master/011/001/README.md#2)
 
 ###### 20210816
 > [算法] [全排列](https://github.com/useryize/practice/blob/master/010/004/README.md)
