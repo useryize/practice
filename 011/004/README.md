@@ -19,3 +19,5 @@
 4、运营看版是移动端 we码，和小程序模式差不多，框架采用 react+hooks+weui
 5、工单平台为华为提单平台，分为我的待办、创建工单、工单查询、系统设置（权限管理）
 在项目中解决同事遇到的技术难点；定位业务在使用中发现的问题，给出问题产生的原因及解决方案；封装可复用的公共组件，并迭代优化；封装公共方法，并安需优化。
+
+https://etax.chinatax.gov.cn/?dmnHafHu=0dGUHKalqWxMjHsXC.WC0CxFHLYKuRolr5xy1LxqD18lecp0M5qCl__isSoYniJz7opbbKUtXq1r33S_nqDSPDb5Ekk_8jDcXu9gtRR8ff6RKQNeeFU7.LA
